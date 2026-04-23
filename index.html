@@ -1577,14 +1577,46 @@
     // ─────────────────────────────────────────────────────────────
     // FORM submit handler
     // ─────────────────────────────────────────────────────────────
-    function handleForm(e) {
+    const TG_TOKEN   = '8767541521:AAHLSry3nMktuVvPEvQoWYlBczXHmnvol7M';
+    const TG_CHAT_ID = '8458281240';
+
+    async function handleForm(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button[type=submit]');
-      btn.textContent = 'Дякуємо! Передзвонимо вам';
-      btn.style.background = '#16a34a';
-      btn.style.boxShadow = '0 4px 14px rgba(22,163,74,0.35)';
+      const form  = e.target;
+      const btn   = form.querySelector('button[type=submit]');
+      const name  = form.querySelector('input[type=text]').value.trim();
+      const phone = form.querySelector('input[type=tel]').value.trim();
+
+      btn.textContent = 'Відправляємо…';
       btn.disabled = true;
-      gsap.from(btn, { scale: 0.94, duration: 0.35, ease: 'back.out(2)' });
+
+      const text = `📋 <b>Новий запис на прийом</b>\n\n👤 Ім'я: ${name}\n📞 Телефон: ${phone}`;
+
+      try {
+        const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' })
+        });
+        if (!res.ok) throw new Error();
+
+        btn.textContent = 'Дякуємо! Передзвонимо вам';
+        btn.style.background  = '#16a34a';
+        btn.style.boxShadow   = '0 4px 14px rgba(22,163,74,0.35)';
+        form.reset();
+        gsap.from(btn, { scale: 0.94, duration: 0.35, ease: 'back.out(2)' });
+
+      } catch {
+        btn.textContent  = 'Помилка. Спробуйте ще раз';
+        btn.style.background = '#dc2626';
+        btn.style.boxShadow  = '0 4px 14px rgba(220,38,38,0.35)';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.textContent  = 'Записатись';
+          btn.style.background = '';
+          btn.style.boxShadow  = '';
+        }, 3000);
+      }
     }
   </script>
 </body>
