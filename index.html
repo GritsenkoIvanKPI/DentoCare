@@ -1071,9 +1071,9 @@
         </h2>
         <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:32px;">
           <div class="card fade-up" style="padding:20px 24px; display:flex; gap:16px; align-items:center; transition-delay:0.08s;">
-            <div style="font-family:'DM Serif Display',serif; font-size:2rem; color:#2546e4; line-height:1;">X+</div>
+            <div id="doctor-exp-num" style="font-family:'DM Serif Display',serif; font-size:2rem; color:#2546e4; line-height:1;">X+</div>
             <div>
-              <div style="font-weight:600; color:#1a1a2e; font-size:0.9375rem;">Досвід понад X років</div>
+              <div id="doctor-exp-txt" style="font-weight:600; color:#1a1a2e; font-size:0.9375rem;">Досвід понад X років</div>
               <div style="font-size:0.875rem; color:#64748b;">Стоматологічна практика</div>
             </div>
           </div>
@@ -1109,16 +1109,16 @@
       </div>
       <div style="background:#fff; border-radius:20px; border:1px solid rgba(37,70,228,0.1); box-shadow:0 4px 20px rgba(37,70,228,0.07); overflow:hidden; margin-bottom:40px;">
         <div class="price-row" style="padding:28px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(37,70,228,0.07);">
-          <div style="font-weight:600; font-size:1rem; color:#1a1a2e;">Консультація</div>
-          <div style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
+          <div id="price-1-name" style="font-weight:600; font-size:1rem; color:#1a1a2e;">Консультація</div>
+          <div id="price-1-val" style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
         </div>
         <div class="price-row" style="padding:28px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(37,70,228,0.07); background:rgba(37,70,228,0.02);">
-          <div style="font-weight:600; font-size:1rem; color:#1a1a2e;">Чистка</div>
-          <div style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
+          <div id="price-2-name" style="font-weight:600; font-size:1rem; color:#1a1a2e;">Чистка</div>
+          <div id="price-2-val" style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
         </div>
         <div class="price-row" style="padding:28px 32px; display:flex; justify-content:space-between; align-items:center;">
-          <div style="font-weight:600; font-size:1rem; color:#1a1a2e;">Лікування карієсу</div>
-          <div style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
+          <div id="price-3-name" style="font-weight:600; font-size:1rem; color:#1a1a2e;">Лікування карієсу</div>
+          <div id="price-3-val" style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
         </div>
       </div>
       <div style="text-align:center;">
@@ -1155,15 +1155,15 @@
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Голосіївський район, Київ
+            <span id="loc-address">Голосіївський район, Київ</span>
           </div>
           <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Пн–Нд: 9:00 — 20:00
+            <span id="loc-hours">Пн–Нд: 9:00 — 20:00</span>
           </div>
           <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +38 (000) 000-00-00
+            <span id="loc-phone">+38 (000) 000-00-00</span>
           </div>
         </div>
       </div>
@@ -1278,18 +1278,18 @@
           <div style="font-weight:600; font-size:0.875rem; color:#fff; margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">Графік роботи</div>
           <div style="display:flex; flex-direction:column; gap:8px;">
             <div style="font-size:0.875rem; color:rgba(255,255,255,0.55);">Понеділок – П'ятниця</div>
-            <div style="font-size:0.9375rem; color:rgba(255,255,255,0.85); font-weight:500;">9:00 – 20:00</div>
+            <div id="footer-hours-wd" style="font-size:0.9375rem; color:rgba(255,255,255,0.85); font-weight:500;">9:00 – 20:00</div>
             <div style="font-size:0.875rem; color:rgba(255,255,255,0.55); margin-top:4px;">Субота – Неділя</div>
-            <div style="font-size:0.9375rem; color:rgba(255,255,255,0.85); font-weight:500;">10:00 – 18:00</div>
+            <div id="footer-hours-we" style="font-size:0.9375rem; color:rgba(255,255,255,0.85); font-weight:500;">10:00 – 18:00</div>
           </div>
         </div>
         <!-- Contacts -->
         <div>
           <div style="font-weight:600; font-size:0.875rem; color:#fff; margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">Контакти</div>
           <div style="display:flex; flex-direction:column; gap:12px;">
-            <div style="font-size:0.875rem; color:rgba(255,255,255,0.65);">Голосіївський район, Київ</div>
-            <a href="tel:+380000000000" class="footer-link">+38 (000) 000-00-00</a>
-            <a href="mailto:info@dentocare.ua" class="footer-link">info@dentocare.ua</a>
+            <div id="footer-address" style="font-size:0.875rem; color:rgba(255,255,255,0.65);">Голосіївський район, Київ</div>
+            <a id="footer-phone" href="tel:+380000000000" class="footer-link">+38 (000) 000-00-00</a>
+            <a id="footer-email" href="mailto:info@dentocare.ua" class="footer-link">info@dentocare.ua</a>
           </div>
         </div>
       </div>
@@ -1618,6 +1618,49 @@
         }, 3000);
       }
     }
+  </script>
+
+  <!-- Dynamic content from content.json -->
+  <script>
+    (async () => {
+      const REPO = 'GritsenkoIvanKPI/DentoCare';
+      try {
+        const res = await fetch(`https://raw.githubusercontent.com/${REPO}/main/content.json?t=${Date.now()}`);
+        if (!res.ok) return;
+        const c = await res.json();
+
+        const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+
+        set('hero-italic',    c.hero_italic);
+        set('hero-desc',      c.hero_desc);
+        set('doctor-exp-num', c.doctor_exp ? c.doctor_exp + '+' : null);
+        set('doctor-exp-txt', c.doctor_exp ? `Досвід понад ${c.doctor_exp} років` : null);
+        set('price-1-name',   c.price_1_name);
+        set('price-1-val',    c.price_1_val);
+        set('price-2-name',   c.price_2_name);
+        set('price-2-val',    c.price_2_val);
+        set('price-3-name',   c.price_3_name);
+        set('price-3-val',    c.price_3_val);
+        set('loc-address',    c.address);
+        set('loc-phone',      c.phone);
+        set('footer-address', c.address);
+        set('footer-hours-wd', c.hours_weekday);
+        set('footer-hours-we', c.hours_weekend);
+
+        if (c.phone) {
+          const fp = document.getElementById('footer-phone');
+          if (fp) { fp.textContent = c.phone; fp.href = 'tel:' + c.phone.replace(/\D/g,'').replace(/^380/, '+380'); }
+        }
+        if (c.email) {
+          const fe = document.getElementById('footer-email');
+          if (fe) { fe.textContent = c.email; fe.href = 'mailto:' + c.email; }
+        }
+        if (c.hours_weekday && c.hours_weekend) {
+          const lh = document.getElementById('loc-hours');
+          if (lh) lh.textContent = `Пн–Пт: ${c.hours_weekday} / Сб–Нд: ${c.hours_weekend}`;
+        }
+      } catch { /* silently fall back to HTML defaults */ }
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — DentoCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #080c14;
+      --surface:  #0f1520;
+      --card:     #141b2d;
+      --border:   rgba(255,255,255,0.07);
+      --accent:   #4a6ef5;
+      --accent-d: #2546e4;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --sub:      #94a3b8;
+      --success:  #22c55e;
+      --error:    #ef4444;
+      --sidebar-w: 240px;
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; }
+
+    /* ─── LOGIN ─────────────────────────────────────────────────── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(74,110,245,0.18) 0%, transparent 70%);
+    }
+    .login-card {
+      width: 100%; max-width: 400px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,110,245,0.08);
+    }
+    .login-logo {
+      font-size: 1.25rem; font-weight: 700;
+      letter-spacing: -0.03em; color: var(--text);
+      margin-bottom: 8px;
+    }
+    .login-logo span { color: var(--accent); }
+    .login-sub { font-size: 0.8125rem; color: var(--muted); margin-bottom: 32px; }
+    .field-label { font-size: 0.75rem; font-weight: 600; color: var(--sub); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; display: block; }
+    .field-input {
+      width: 100%; padding: 11px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text); font-size: 0.9375rem; font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .field-input:focus { border-color: rgba(74,110,245,0.5); box-shadow: 0 0 0 3px rgba(74,110,245,0.12); }
+    .btn-accent {
+      width: 100%; padding: 12px;
+      background: var(--accent-d);
+      color: #fff; font-size: 0.9375rem; font-weight: 600;
+      border: none; border-radius: 8px; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37,70,228,0.35);
+      transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s ease, background 0.15s ease;
+      margin-top: 8px;
+    }
+    .btn-accent:hover { background: #3556f0; box-shadow: 0 6px 20px rgba(37,70,228,0.45); transform: translateY(-1px); }
+    .btn-accent:active { transform: translateY(0); }
+    .btn-accent:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    #login-error { display: none; color: var(--error); font-size: 0.8125rem; margin-top: 10px; text-align: center; }
+
+    /* ─── APP SHELL ──────────────────────────────────────────────── */
+    #app { display: none; height: 100vh; }
+    .app-layout { display: flex; height: 100%; }
+
+    /* ─── SIDEBAR ────────────────────────────────────────────────── */
+    #sidebar {
+      width: var(--sidebar-w); flex-shrink: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      height: 100%; overflow-y: auto;
+    }
+    .sidebar-header {
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-logo { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .sidebar-logo span { color: var(--accent); }
+    .sidebar-role { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .sidebar-nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 2px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: var(--muted); font-size: 0.875rem; font-weight: 500;
+      cursor: pointer; transition: background 0.15s, color 0.15s;
+      border: none; background: none; text-align: left; width: 100%;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.05); color: var(--sub); }
+    .nav-item.active { background: rgba(74,110,245,0.12); color: var(--accent); }
+    .nav-item svg { flex-shrink: 0; opacity: 0.7; }
+    .nav-item.active svg { opacity: 1; }
+    .nav-divider { height: 1px; background: var(--border); margin: 8px 0; }
+    .sidebar-footer { padding: 12px; border-top: 1px solid var(--border); }
+
+    /* ─── MAIN ───────────────────────────────────────────────────── */
+    #main { flex: 1; overflow-y: auto; background: var(--bg); }
+    .view { display: none; padding: 40px; }
+    .view.active { display: block; }
+    .page-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text); margin-bottom: 4px; }
+    .page-sub { font-size: 0.875rem; color: var(--muted); margin-bottom: 32px; }
+
+    /* ─── CARDS ──────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .card-title { font-size: 0.9375rem; font-weight: 600; color: var(--text); }
+    .card-sub { font-size: 0.8125rem; color: var(--muted); margin-top: 2px; }
+    .card-body { padding: 24px; }
+
+    /* ─── STAT GRID ──────────────────────────────────────────────── */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .stat-label { font-size: 0.75rem; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+    .stat-value { font-size: 2rem; font-weight: 700; letter-spacing: -0.04em; color: var(--text); line-height: 1; }
+    .stat-hint { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+
+    /* ─── BADGE ──────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 20px;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .badge-info { background: rgba(74,110,245,0.15); color: #7c9cf4; }
+    .badge-success { background: rgba(34,197,94,0.12); color: #4ade80; }
+
+    /* ─── TABLE ──────────────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left; padding: 10px 16px;
+      font-size: 0.6875rem; font-weight: 600; color: var(--muted);
+      letter-spacing: 0.07em; text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    td { padding: 13px 16px; font-size: 0.875rem; color: var(--sub); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* ─── FORM ───────────────────────────────────────────────────── */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-grid.single { grid-template-columns: 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.span2 { grid-column: span 2; }
+    .section-sep {
+      grid-column: span 2;
+      border-top: 1px solid var(--border);
+      padding-top: 20px; margin-top: 4px;
+    }
+    .section-sep-title { font-size: 0.6875rem; font-weight: 600; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 0; }
+    textarea.field-input { resize: vertical; min-height: 80px; }
+
+    /* ─── BUTTONS ────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 600; font-family: 'Inter', sans-serif;
+      cursor: pointer; border: none; transition: all 0.15s ease;
+    }
+    .btn-primary { background: var(--accent-d); color: #fff; box-shadow: 0 4px 12px rgba(37,70,228,0.3); }
+    .btn-primary:hover { background: #3556f0; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,70,228,0.4); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    .btn-ghost { background: rgba(255,255,255,0.06); color: var(--sub); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+    .btn-danger { background: rgba(239,68,68,0.12); color: #f87171; }
+    .btn-danger:hover { background: rgba(239,68,68,0.2); }
+
+    /* ─── NOTICE ─────────────────────────────────────────────────── */
+    .notice {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px 16px; border-radius: 8px;
+      font-size: 0.8125rem; color: var(--sub); line-height: 1.5;
+    }
+    .notice-info { background: rgba(74,110,245,0.08); border: 1px solid rgba(74,110,245,0.18); }
+    .notice svg { flex-shrink: 0; margin-top: 1px; }
+
+    /* ─── TOAST ──────────────────────────────────────────────────── */
+    #toast {
+      display: none; opacity: 0;
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      padding: 12px 20px; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 500; color: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    /* ─── PANEL TOGGLE ───────────────────────────────────────────── */
+    .panel-toggle { transition: max-height 0.25s ease, opacity 0.2s ease; overflow: hidden; }
+    .panel-hidden { max-height: 0; opacity: 0; pointer-events: none; }
+    .panel-visible { max-height: 600px; opacity: 1; pointer-events: auto; }
+
+    /* ─── SCROLLBAR ──────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+    /* ─── SITE LINK ──────────────────────────────────────────────── */
+    a.link { color: var(--accent); text-decoration: none; font-size: 0.875rem; }
+    a.link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════ LOGIN ══════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">Dento<span>Care</span></div>
+    <div class="login-sub">Панель адміністратора</div>
+    <form id="login-form">
+      <div class="form-group" style="margin-bottom:20px;">
+        <label class="field-label" for="login-pass">Пароль</label>
+        <input class="field-input" type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button class="btn-accent" type="submit">Увійти</button>
+      <div id="login-error">Невірний пароль. Спробуйте ще раз.</div>
+    </form>
+    <p style="font-size:0.75rem; color:var(--muted); margin-top:28px; text-align:center;">За замовчуванням: <code style="color:var(--sub);">admin2024</code></p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ APP ════════════════════════════════════ -->
+<div id="app">
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">Dento<span>Care</span></div>
+        <div class="sidebar-role">Адмін-панель</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="dashboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Дашборд
+        </button>
+        <button class="nav-item" data-view="inquiries">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Заявки
+          <span id="badge-count" style="margin-left:auto; background:rgba(74,110,245,0.2); color:#7c9cf4; font-size:0.6875rem; font-weight:700; padding:2px 7px; border-radius:10px;">0</span>
+        </button>
+        <button class="nav-item" data-view="content">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Контент сайту
+        </button>
+        <div class="nav-divider"></div>
+        <button class="nav-item" data-view="settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Налаштування
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="nav-item" id="logout-btn" style="color:var(--muted); width:100%;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Вийти
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="main">
+
+      <!-- ─── DASHBOARD ─────────────────────────────────────────── -->
+      <div id="view-dashboard" class="view active">
+        <h1 class="page-title">Дашборд</h1>
+        <p class="page-sub">Огляд стану сайту та заявок</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-label">Всього заявок</div>
+            <div class="stat-value" id="stat-total">0</div>
+            <div class="stat-hint">Збережено локально</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Остання заявка</div>
+            <div class="stat-value" id="stat-last" style="font-size:1.25rem; padding-top:8px;">—</div>
+            <div class="stat-hint">Дата отримання</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Telegram</div>
+            <div style="margin-top:8px;"><span class="badge badge-success">● Активно</span></div>
+            <div class="stat-hint" style="margin-top:8px;">Сповіщення увімкнені</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Сайт</div>
+            <div style="margin-top:10px;">
+              <a href="https://gritsenkoivankpi.github.io/DentoCare" target="_blank" class="link" style="font-size:0.875rem;">Відкрити сайт →</a>
+            </div>
+            <div class="stat-hint" style="margin-top:8px;">GitHub Pages</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Останні заявки</div>
+              <div class="card-sub">5 останніх записів</div>
+            </div>
+            <button class="btn btn-ghost" onclick="navigate('inquiries')">Всі заявки →</button>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ім'я</th>
+                    <th>Телефон</th>
+                    <th>Дата</th>
+                    <th>Примітки</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-tbody">
+                  <tr><td colspan="4" style="padding:32px; text-align:center; color:var(--muted);">Заявок ще немає</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── INQUIRIES ──────────────────────────────────────────── -->
+      <div id="view-inquiries" class="view">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:32px;">
+          <div>
+            <h1 class="page-title">Заявки</h1>
+            <p class="page-sub" style="margin-bottom:0;">Журнал дзвінків та записів пацієнтів</p>
+          </div>
+          <button class="btn btn-primary" id="add-inq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Додати заявку
+          </button>
+        </div>
+
+        <div class="notice notice-info" style="margin-bottom:20px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c9cf4" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Нові заявки з форми на сайті автоматично надходять у Telegram. Тут ви можете вести ручний журнал дзвінків.
+        </div>
+
+        <!-- Add inquiry panel -->
+        <div id="add-inquiry-panel" class="card panel-toggle panel-hidden" style="margin-bottom:20px;">
+          <div class="card-header">
+            <div class="card-title">Нова заявка</div>
+          </div>
+          <div class="card-body">
+            <form id="add-inquiry-form">
+              <div class="form-grid" style="margin-bottom:16px;">
+                <div class="form-group">
+                  <label class="field-label" for="inq-name">Ім'я</label>
+                  <input class="field-input" type="text" id="inq-name" placeholder="Ім'я пацієнта" required />
+                </div>
+                <div class="form-group">
+                  <label class="field-label" for="inq-phone">Телефон</label>
+                  <input class="field-input" type="tel" id="inq-phone" placeholder="+38 (0__) ___-__-__" required />
+                </div>
+                <div class="form-group span2">
+                  <label class="field-label" for="inq-notes">Примітки</label>
+                  <input class="field-input" type="text" id="inq-notes" placeholder="Послуга, час запису, нотатки…" />
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <button class="btn btn-primary" type="submit">Зберегти</button>
+                <button class="btn btn-ghost" type="button" id="add-inq-cancel">Скасувати</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ім'я</th>
+                    <th>Телефон</th>
+                    <th>Дата</th>
+                    <th>Примітки</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="inquiries-tbody">
+                  <tr><td colspan="5" style="padding:40px; text-align:center; color:var(--muted); font-size:0.875rem;">Заявок ще немає</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── CONTENT ────────────────────────────────────────────── -->
+      <div id="view-content" class="view">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:32px; flex-wrap:wrap; gap:16px;">
+          <div>
+            <h1 class="page-title">Контент сайту</h1>
+            <p class="page-sub" style="margin-bottom:0;">Редагуйте текст та контакти — зміни одразу відображаються на сайті</p>
+          </div>
+          <button class="btn btn-primary" id="publish-btn" form="content-form" type="submit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Опублікувати
+          </button>
+        </div>
+
+        <form id="content-form">
+          <!-- HERO -->
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Герой-секція</div></div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group span2">
+                  <label class="field-label">Курсивний підзаголовок</label>
+                  <input class="field-input" type="text" data-field="hero_italic" placeholder="Без болю. Без страху. З результатом." />
+                </div>
+                <div class="form-group span2">
+                  <label class="field-label">Опис</label>
+                  <textarea class="field-input" data-field="hero_desc" placeholder="Лікуємо, відновлюємо та повертаємо впевненість…"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DOCTOR -->
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Лікар</div></div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="field-label">Досвід (рокiв)</label>
+                  <input class="field-input" type="text" data-field="doctor_exp" placeholder="10" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRICES -->
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Ціни</div></div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="field-label">Послуга 1 — назва</label>
+                  <input class="field-input" type="text" data-field="price_1_name" placeholder="Консультація" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Послуга 1 — ціна</label>
+                  <input class="field-input" type="text" data-field="price_1_val" placeholder="від 300 грн" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Послуга 2 — назва</label>
+                  <input class="field-input" type="text" data-field="price_2_name" placeholder="Чистка" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Послуга 2 — ціна</label>
+                  <input class="field-input" type="text" data-field="price_2_val" placeholder="від 800 грн" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Послуга 3 — назва</label>
+                  <input class="field-input" type="text" data-field="price_3_name" placeholder="Лікування карієсу" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Послуга 3 — ціна</label>
+                  <input class="field-input" type="text" data-field="price_3_val" placeholder="від 1200 грн" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTACTS -->
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Контакти та графік</div></div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="field-label">Телефон</label>
+                  <input class="field-input" type="text" data-field="phone" placeholder="+38 (000) 000-00-00" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Email</label>
+                  <input class="field-input" type="email" data-field="email" placeholder="info@dentocare.ua" />
+                </div>
+                <div class="form-group span2">
+                  <label class="field-label">Адреса</label>
+                  <input class="field-input" type="text" data-field="address" placeholder="Голосіївський район, Київ" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Пн–Пт (години роботи)</label>
+                  <input class="field-input" type="text" data-field="hours_weekday" placeholder="9:00 – 20:00" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Сб–Нд (години роботи)</label>
+                  <input class="field-input" type="text" data-field="hours_weekend" placeholder="10:00 – 18:00" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- ─── SETTINGS ───────────────────────────────────────────── -->
+      <div id="view-settings" class="view">
+        <h1 class="page-title">Налаштування</h1>
+        <p class="page-sub">GitHub інтеграція та безпека</p>
+
+        <form id="settings-form">
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">GitHub інтеграція</div></div>
+            <div class="card-body">
+              <div class="notice notice-info" style="margin-bottom:20px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c9cf4" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Для публікації змін потрібен GitHub Personal Access Token (PAT) з правом <code style="color:var(--sub);">repo</code>. Токен зберігається лише у вашому браузері.
+              </div>
+              <div class="form-grid single">
+                <div class="form-group">
+                  <label class="field-label">GitHub PAT</label>
+                  <input class="field-input" type="password" id="set-pat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Репозиторій</label>
+                  <input class="field-input" type="text" value="GritsenkoIvanKPI/DentoCare" disabled style="opacity:0.5; cursor:not-allowed;" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Зміна пароля</div></div>
+            <div class="card-body">
+              <div class="form-grid single">
+                <div class="form-group">
+                  <label class="field-label">Новий пароль</label>
+                  <input class="field-input" type="password" id="set-pass" placeholder="Залиште порожнім, якщо не змінюєте" autocomplete="new-password" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Підтвердіть пароль</label>
+                  <input class="field-input" type="password" id="set-pass2" placeholder="Повторіть пароль" autocomplete="new-password" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header"><div class="card-title">Telegram сповіщення</div></div>
+            <div class="card-body">
+              <div class="notice notice-info" style="margin-bottom:16px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c9cf4" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Токен та Chat ID налаштовані у коді сайту. Для зміни — зверніться до розробника.
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="field-label">Bot Token</label>
+                  <input class="field-input" type="text" value="8767541521:AAH…ol7M" disabled style="opacity:0.4; cursor:not-allowed;" />
+                </div>
+                <div class="form-group">
+                  <label class="field-label">Chat ID</label>
+                  <input class="field-input" type="text" value="8458281240" disabled style="opacity:0.4; cursor:not-allowed;" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Зберегти налаштування</button>
+        </form>
+
+        <div style="margin-top:32px;">
+          <div class="card" style="border-color:rgba(239,68,68,0.15);">
+            <div class="card-header">
+              <div>
+                <div class="card-title" style="color:#f87171;">Небезпечна зона</div>
+                <div class="card-sub">Видалення даних</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p style="font-size:0.875rem; color:var(--muted); margin-bottom:16px;">Очистити всі збережені заявки з браузера. Цю дію не можна скасувати.</p>
+              <button class="btn btn-danger" id="clear-inquiries-btn">Видалити всі заявки</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+  /* ──────────────────────────────────────────────────────────────────
+     CONFIG
+  ────────────────────────────────────────────────────────────────── */
+  const CFG = {
+    siteName:        'DentoCare',
+    siteRepo:        'GritsenkoIvanKPI/DentoCare',
+    siteUrl:         'https://gritsenkoivankpi.github.io/DentoCare',
+    defaultPassword: 'admin2024',
+  };
+
+  /* ──────────────────────────────────────────────────────────────────
+     STATE (localStorage)
+  ────────────────────────────────────────────────────────────────── */
+  const S = {
+    get pat()         { return localStorage.getItem('dc_pat') || ''; },
+    set pat(v)        { localStorage.setItem('dc_pat', v); },
+    get pass()        { return localStorage.getItem('dc_pass') || CFG.defaultPassword; },
+    set pass(v)       { localStorage.setItem('dc_pass', v); },
+    get inquiries()   { return JSON.parse(localStorage.getItem('dc_inquiries') || '[]'); },
+    set inquiries(v)  { localStorage.setItem('dc_inquiries', JSON.stringify(v)); },
+  };
+
+  /* ──────────────────────────────────────────────────────────────────
+     AUTH
+  ────────────────────────────────────────────────────────────────── */
+  function attemptLogin(password) {
+    if (password === S.pass) {
+      sessionStorage.setItem('dc_auth', '1');
+      return true;
+    }
+    return false;
+  }
+
+  function isAuthed() {
+    return sessionStorage.getItem('dc_auth') === '1';
+  }
+
+  function logout() {
+    sessionStorage.removeItem('dc_auth');
+    location.reload();
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     NAVIGATION
+  ────────────────────────────────────────────────────────────────── */
+  function navigate(view) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(`view-${view}`).classList.add('active');
+    document.querySelectorAll('[data-view]').forEach(n => n.classList.remove('active'));
+    document.querySelector(`[data-view="${view}"]`).classList.add('active');
+
+    if (view === 'inquiries') renderInquiries();
+    if (view === 'dashboard') renderDashboard();
+    if (view === 'settings')  document.getElementById('set-pat').value = S.pat;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     SHOW APP
+  ────────────────────────────────────────────────────────────────── */
+  function showApp() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadContent();
+    renderDashboard();
+    updateBadge();
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     GITHUB API
+  ────────────────────────────────────────────────────────────────── */
+  async function fetchContent() {
+    const url = `https://raw.githubusercontent.com/${CFG.siteRepo}/main/content.json?t=${Date.now()}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Не вдалось завантажити content.json');
+    return await res.json();
+  }
+
+  async function publishContent(content) {
+    if (!S.pat) throw new Error('GitHub PAT не налаштовано. Перейдіть у Налаштування.');
+
+    const apiBase = `https://api.github.com/repos/${CFG.siteRepo}/contents/content.json`;
+    const headers = {
+      Authorization: `token ${S.pat}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    };
+
+    const infoRes = await fetch(apiBase, { headers });
+    if (!infoRes.ok) throw new Error('Не вдалось прочитати файл з GitHub');
+    const info = await infoRes.json();
+
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
+
+    const putRes = await fetch(apiBase, {
+      method:  'PUT',
+      headers,
+      body: JSON.stringify({
+        message: 'Update site content via admin panel',
+        content: encoded,
+        sha:     info.sha,
+      }),
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json().catch(() => ({}));
+      throw new Error(err.message || 'Помилка GitHub API');
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     CONTENT
+  ────────────────────────────────────────────────────────────────── */
+  let contentDraft = {};
+
+  async function loadContent() {
+    try {
+      contentDraft = await fetchContent();
+    } catch {
+      const saved = localStorage.getItem('dc_draft');
+      contentDraft = saved ? JSON.parse(saved) : {};
+    }
+    populateForm(contentDraft);
+  }
+
+  function populateForm(c) {
+    for (const [key, val] of Object.entries(c)) {
+      const el = document.querySelector(`[data-field="${key}"]`);
+      if (el) el.value = val;
+    }
+  }
+
+  function getFormContent() {
+    const result = { ...contentDraft };
+    document.querySelectorAll('[data-field]').forEach(el => {
+      result[el.dataset.field] = el.value;
+    });
+    return result;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     INQUIRIES
+  ────────────────────────────────────────────────────────────────── */
+  function updateBadge() {
+    document.getElementById('badge-count').textContent = S.inquiries.length;
+  }
+
+  function renderDashboard() {
+    const all = S.inquiries;
+    document.getElementById('stat-total').textContent = all.length;
+    const last = all[all.length - 1];
+    document.getElementById('stat-last').textContent = last
+      ? new Date(last.date).toLocaleDateString('uk-UA')
+      : '—';
+
+    const tbody = document.getElementById('dashboard-tbody');
+    const recent = all.slice(-5).reverse();
+    tbody.innerHTML = recent.length
+      ? recent.map(inq => `
+          <tr>
+            <td style="color:var(--text);">${esc(inq.name)}</td>
+            <td><a href="tel:${esc(inq.phone)}" style="color:#7c9cf4; text-decoration:none;">${esc(inq.phone)}</a></td>
+            <td>${new Date(inq.date).toLocaleDateString('uk-UA')}</td>
+            <td>${esc(inq.notes || '—')}</td>
+          </tr>`)
+        .join('')
+      : '<tr><td colspan="4" style="padding:32px; text-align:center; color:var(--muted);">Заявок ще немає</td></tr>';
+  }
+
+  function renderInquiries() {
+    const all = S.inquiries.slice().reverse();
+    const tbody = document.getElementById('inquiries-tbody');
+    tbody.innerHTML = all.length
+      ? all.map((inq, ri) => {
+          const realIdx = S.inquiries.length - 1 - ri;
+          return `
+            <tr>
+              <td style="color:var(--text);">${esc(inq.name)}</td>
+              <td><a href="tel:${esc(inq.phone)}" style="color:#7c9cf4; text-decoration:none;">${esc(inq.phone)}</a></td>
+              <td>${new Date(inq.date).toLocaleDateString('uk-UA')}</td>
+              <td>${esc(inq.notes || '—')}</td>
+              <td style="text-align:right;">
+                <button onclick="deleteInquiry(${realIdx})" class="btn btn-danger" style="padding:5px 12px; font-size:0.75rem;">Видалити</button>
+              </td>
+            </tr>`;
+        }).join('')
+      : '<tr><td colspan="5" style="padding:40px; text-align:center; color:var(--muted); font-size:0.875rem;">Заявок ще немає</td></tr>';
+  }
+
+  function addInquiry(name, phone, notes) {
+    const arr = S.inquiries;
+    arr.push({ name, phone, notes, date: new Date().toISOString() });
+    S.inquiries = arr;
+    renderInquiries();
+    renderDashboard();
+    updateBadge();
+  }
+
+  function deleteInquiry(idx) {
+    if (!confirm('Видалити цю заявку?')) return;
+    const arr = S.inquiries;
+    arr.splice(idx, 1);
+    S.inquiries = arr;
+    renderInquiries();
+    renderDashboard();
+    updateBadge();
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     UTILS
+  ────────────────────────────────────────────────────────────────── */
+  function esc(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = type === 'success' ? '#16a34a' : (type === 'error' ? '#dc2626' : '#2546e4');
+    t.style.display = 'block';
+    t.style.opacity = '1';
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => {
+      t.style.opacity = '0';
+      setTimeout(() => { t.style.display = 'none'; }, 320);
+    }, 3200);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     INIT
+  ────────────────────────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* Auto-login if session active */
+    if (isAuthed()) showApp();
+
+    /* Login form */
+    document.getElementById('login-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const pass = document.getElementById('login-pass').value;
+      if (attemptLogin(pass)) {
+        showApp();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+        document.getElementById('login-pass').value = '';
+        document.getElementById('login-pass').focus();
+      }
+    });
+
+    /* Nav buttons */
+    document.querySelectorAll('[data-view]').forEach(el => {
+      el.addEventListener('click', () => navigate(el.dataset.view));
+    });
+
+    /* Logout */
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
+    /* Add inquiry toggle */
+    document.getElementById('add-inq-toggle').addEventListener('click', () => {
+      const panel = document.getElementById('add-inquiry-panel');
+      const open  = panel.classList.contains('panel-visible');
+      panel.classList.toggle('panel-hidden', open);
+      panel.classList.toggle('panel-visible', !open);
+      if (!open) document.getElementById('inq-name').focus();
+    });
+
+    document.getElementById('add-inq-cancel').addEventListener('click', () => {
+      const panel = document.getElementById('add-inquiry-panel');
+      panel.classList.add('panel-hidden');
+      panel.classList.remove('panel-visible');
+    });
+
+    /* Add inquiry form */
+    document.getElementById('add-inquiry-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = document.getElementById('inq-name').value.trim();
+      const phone = document.getElementById('inq-phone').value.trim();
+      const notes = document.getElementById('inq-notes').value.trim();
+      addInquiry(name, phone, notes);
+      e.target.reset();
+      document.getElementById('add-inquiry-panel').classList.add('panel-hidden');
+      document.getElementById('add-inquiry-panel').classList.remove('panel-visible');
+      showToast('Заявку додано');
+    });
+
+    /* Content form publish */
+    document.getElementById('content-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('publish-btn');
+      const newContent = getFormContent();
+      localStorage.setItem('dc_draft', JSON.stringify(newContent));
+
+      btn.textContent = 'Публікуємо…';
+      btn.disabled = true;
+
+      try {
+        await publishContent(newContent);
+        contentDraft = newContent;
+        showToast('Зміни опубліковано на сайті', 'success');
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Опублікувати`;
+        btn.disabled = false;
+      }
+    });
+
+    /* Settings form */
+    document.getElementById('settings-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const pat   = document.getElementById('set-pat').value.trim();
+      const pass  = document.getElementById('set-pass').value;
+      const pass2 = document.getElementById('set-pass2').value;
+
+      if (pat)  S.pat  = pat;
+
+      if (pass) {
+        if (pass !== pass2) { showToast('Паролі не збігаються', 'error'); return; }
+        S.pass = pass;
+      }
+
+      showToast('Налаштування збережено', 'success');
+      document.getElementById('set-pass').value  = '';
+      document.getElementById('set-pass2').value = '';
+    });
+
+    /* Clear inquiries */
+    document.getElementById('clear-inquiries-btn').addEventListener('click', () => {
+      if (!confirm('Видалити ВСІ заявки? Цю дію не можна скасувати.')) return;
+      S.inquiries = [];
+      renderDashboard();
+      updateBadge();
+      showToast('Всі заявки видалено');
+    });
+  });
+</script>
+</body>
+</html>
