@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Стоматолог у Голосіївському районі — Без болю. З результатом.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#eef3ff',
+              100: '#dce6ff',
+              200: '#bacefd',
+              300: '#8cadfb',
+              400: '#5e86f7',
+              500: '#3a60f0',
+              600: '#2546e4',
+              700: '#1d38d0',
+              800: '#1e30aa',
+              900: '#1e2e86',
+            },
+          },
+          fontFamily: {
+            display: ['"DM Serif Display"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a2e; }
+
+    /* Grain texture overlay */
+    .grain::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Typography */
+    .heading-display {
+      font-family: 'DM Serif Display', serif;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .body-text { line-height: 1.7; }
+
+    /* Nav */
+    .nav-link {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.18s ease, opacity 0.18s ease;
+    }
+    .nav-link:hover { color: #ffffff; }
+    .nav-link:focus-visible { outline: 2px solid rgba(255,255,255,0.5); border-radius: 4px; }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #2546e4;
+      color: #fff;
+      font-weight: 600; font-size: 0.9375rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37,70,228,0.35), 0 1px 3px rgba(37,70,228,0.2);
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease, background 0.18s ease;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #1d38d0;
+      box-shadow: 0 6px 20px rgba(37,70,228,0.45), 0 2px 6px rgba(37,70,228,0.25);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0px); }
+    .btn-primary:focus-visible { outline: 3px solid rgba(37,70,228,0.5); outline-offset: 2px; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent;
+      color: #2546e4;
+      font-weight: 600; font-size: 0.9375rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      border: 1.5px solid #2546e4;
+      cursor: pointer;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), background 0.18s ease, color 0.18s ease;
+      text-decoration: none;
+    }
+    .btn-outline:hover { background: #2546e4; color: #fff; transform: translateY(-1px); }
+    .btn-outline:active { transform: translateY(0px); }
+    .btn-outline:focus-visible { outline: 3px solid rgba(37,70,228,0.5); outline-offset: 2px; }
+
+    .btn-white {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #fff; color: #2546e4;
+      font-weight: 600; font-size: 0.9375rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px; border: none; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+      text-decoration: none;
+    }
+    .btn-white:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .btn-white:active { transform: translateY(0px); }
+    .btn-white:focus-visible { outline: 3px solid rgba(255,255,255,0.7); outline-offset: 2px; }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(37,70,228,0.08);
+      box-shadow: 0 2px 8px rgba(37,70,228,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(37,70,228,0.12), 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    /* Service card */
+    .service-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid rgba(37,70,228,0.1);
+      box-shadow: 0 2px 8px rgba(37,70,228,0.06);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(37,70,228,0.14);
+      border-color: rgba(37,70,228,0.25);
+    }
+
+    /* Pain block items */
+    .pain-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      background: rgba(37,70,228,0.04);
+      border-left: 3px solid #2546e4;
+      transition: background 0.18s ease;
+    }
+    .pain-item:hover { background: rgba(37,70,228,0.08); }
+
+    /* Step circle */
+    .step-circle {
+      width: 44px; height: 44px; min-width: 44px;
+      border-radius: 50%;
+      background: #2546e4;
+      color: #fff;
+      font-weight: 700; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(37,70,228,0.35);
+    }
+
+    /* FAQ accordion */
+    details summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px;
+      font-weight: 600; font-size: 0.9375rem;
+      transition: color 0.18s ease;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary:hover { color: #2546e4; }
+    details summary:focus-visible { outline: 2px solid #2546e4; border-radius: 8px; }
+    details summary .chevron { transition: transform 0.22s ease; }
+    details[open] summary .chevron { transform: rotate(180deg); }
+    details summary { gap: 12px; }
+    details[open] summary { color: #2546e4; }
+    .faq-answer {
+      padding: 0 20px 18px;
+      font-size: 0.9375rem;
+      color: #4a5568;
+      line-height: 1.7;
+    }
+
+    /* Testimonial cards */
+    .testimonial-card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid rgba(37,70,228,0.08);
+      box-shadow: 0 2px 10px rgba(37,70,228,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      padding: 28px 24px;
+    }
+
+    /* Stars */
+    .stars { color: #f5a623; letter-spacing: 2px; }
+
+    /* Section label */
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #2546e4;
+      background: rgba(37,70,228,0.08);
+      padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    /* Before/after */
+    .before-after-badge {
+      position: absolute; top: 12px; left: 12px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: #1a1a2e; color: #fff;
+      padding: 4px 10px; border-radius: 6px;
+    }
+
+    /* Radial bg decorations */
+    .hero-bg-radial {
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(37,70,228,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(37,70,228,0.05) 0%, transparent 60%),
+        #ffffff;
+    }
+    .cta-bg {
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        #2546e4;
+    }
+
+    /* Smooth image overlay */
+    .img-overlay {
+      position: relative; overflow: hidden; border-radius: 16px;
+    }
+    .img-overlay img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-overlay::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,26,46,0.35) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Input */
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1.5px solid #e2e8f0;
+      font-size: 0.9375rem;
+      font-family: 'Inter', sans-serif;
+      color: #1a1a2e;
+      background: #fff;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: #2546e4;
+      box-shadow: 0 0 0 3px rgba(37,70,228,0.12);
+    }
+    .form-input::placeholder { color: #9ca3af; }
+
+    /* Dividers */
+    .section-divider { border: none; border-top: 1px solid rgba(37,70,228,0.08); }
+
+    /* Footer links */
+    .footer-link { color: rgba(255,255,255,0.65); font-size: 0.875rem; transition: color 0.15s ease; text-decoration: none; }
+    .footer-link:hover { color: #fff; }
+    .footer-link:focus-visible { outline: 2px solid rgba(255,255,255,0.5); border-radius: 3px; }
+
+    /* Scroll fade-in */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Results grid (before/after + review cards) ── */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .rc-card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid rgba(37,70,228,0.09);
+      box-shadow: 0 2px 16px rgba(37,70,228,0.07), 0 1px 4px rgba(0,0,0,0.04);
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .rc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(37,70,228,0.13), 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Before/After slider */
+    .bas-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      cursor: col-resize;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .bas-before, .bas-after {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+    }
+    .bas-before img, .bas-after img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      pointer-events: none;
+    }
+    .bas-after { clip-path: inset(0 0 0 50%); }
+
+    /* Divider line */
+    .bas-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      z-index: 5;
+    }
+
+    /* Drag knob */
+    .bas-knob {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.22), 0 0 0 3px rgba(37,70,228,0.12);
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+      z-index: 6;
+      transition: transform 0.1s ease;
+    }
+    .bas-wrap:active .bas-knob { transform: translate(-50%, -50%) scale(1.12); }
+
+    /* BEFORE / AFTER labels */
+    .bas-badge {
+      position: absolute;
+      top: 10px;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 9px; border-radius: 100px;
+      pointer-events: none; z-index: 7;
+    }
+    .bas-badge--before {
+      left: 10px;
+      background: rgba(26,26,46,0.72);
+      color: #fff;
+      backdrop-filter: blur(4px);
+    }
+    .bas-badge--after {
+      right: 10px;
+      background: #2546e4;
+      color: #fff;
+    }
+
+    /* Transparent range input on top */
+    .bas-range {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      margin: 0; padding: 0;
+      opacity: 0;
+      cursor: col-resize;
+      z-index: 10;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    /* Card text body */
+    .rc-body { padding: 20px 22px 24px; }
+
+    .rc-stars { color: #f5a623; letter-spacing: 2px; font-size: 0.875rem; }
+
+    .rc-text {
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 1.65;
+      margin: 10px 0 16px;
+    }
+
+    .rc-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .rc-avatar {
+      width: 38px; height: 38px; border-radius: 50%; object-fit: cover;
+      border: 2px solid rgba(37,70,228,0.15);
+      flex-shrink: 0;
+    }
+    .rc-name {
+      font-weight: 600; font-size: 0.875rem; color: #1a1a2e;
+    }
+
+    /* ── Service cards v2 (hover photo reveal) ── */
+    .svc-card {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid rgba(37,70,228,0.09);
+      box-shadow: 0 2px 12px rgba(37,70,228,0.07), 0 1px 3px rgba(0,0,0,0.04);
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    /* Photo layer — hidden by default, revealed on hover */
+    .svc-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 0.48s cubic-bezier(0.25,0.46,0.45,0.94),
+                  transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .svc-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .svc-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(18,18,40,0.92) 0%,
+        rgba(18,18,40,0.55) 45%,
+        rgba(18,18,40,0.18) 100%
+      );
+    }
+    .svc-card:hover .svc-photo {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Body (content) */
+    .svc-body {
+      position: relative;
+      z-index: 1;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Icon */
+    .svc-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: rgba(37,70,228,0.09);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+      color: #2546e4;
+      transition: background 0.38s ease, color 0.38s ease;
+      flex-shrink: 0;
+    }
+    .svc-card:hover .svc-icon {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+    }
+
+    /* Title */
+    .svc-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: #1a1a2e;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+      transition: color 0.38s ease;
+    }
+    .svc-card:hover .svc-title { color: #fff; }
+
+    /* Description */
+    .svc-desc {
+      font-size: 0.875rem;
+      color: #64748b;
+      line-height: 1.68;
+      margin: 0;
+      flex: 1;
+      transition: color 0.38s ease;
+    }
+    .svc-card:hover .svc-desc { color: rgba(255,255,255,0.72); }
+
+    /* CTA arrow */
+    .svc-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #2546e4;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.34,1.56,0.64,1), color 0.32s ease;
+    }
+    .svc-card:hover .svc-cta {
+      opacity: 1;
+      transform: translateY(0);
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Subtle lift on hover */
+    .svc-card {
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.28s ease;
+    }
+    .svc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(37,70,228,0.18), 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .svc-card:focus-visible {
+      outline: 3px solid rgba(37,70,228,0.45);
+      outline-offset: 2px;
+    }
+
+    /* Social icon */
+    .social-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.12);
+      color: #fff; transition: background 0.18s ease, transform 0.18s ease;
+      text-decoration: none;
+    }
+    .social-icon:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+    .social-icon:focus-visible { outline: 2px solid rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ NAV -->
+  <header style="background:#2546e4; position:sticky; top:0; z-index:50; box-shadow:0 2px 16px rgba(37,70,228,0.28);">
+    <div style="max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:64px;">
+      <!-- Logo -->
+      <a href="#" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <div style="width:36px; height:36px; border-radius:10px; background:rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3c-1.5 0-3 1-3 4 0 2 .5 3.5 1.5 5L9 19c.3 1 1.5 2 3 2s2.7-1 3-2l1.5-7C17.5 10.5 18 9 18 7c0-3-1.5-4-3-4a3 3 0 0 0-3 2 3 3 0 0 0-3-2z"/></svg>
+        </div>
+        <span style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; letter-spacing:-0.02em;">DentoCare</span>
+      </a>
+      <!-- Nav links -->
+      <nav style="display:flex; align-items:center; gap:28px;" aria-label="Головна навігація">
+        <a href="#services" class="nav-link">Послуги</a>
+        <a href="#why-us" class="nav-link">Про нас</a>
+        <a href="#doctor" class="nav-link">Лікар</a>
+        <a href="#results" class="nav-link">Відгуки</a>
+        <a href="#prices" class="nav-link">Ціни</a>
+        <a href="#contact" class="nav-link">Контакти</a>
+      </nav>
+      <a href="#booking" class="btn-white" style="font-size:0.875rem; padding:0.6rem 1.25rem;">Записатись</a>
+    </div>
+  </header>
+
+  <!-- ============================================================ HERO -->
+  <section id="hero-section" class="hero-bg-radial grain" style="position:relative; overflow:hidden; padding:96px 24px;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <!-- Left: text -->
+      <div>
+        <span id="hero-label" class="section-label">Голосіївський район, Київ</span>
+        <h1 id="hero-h1" class="heading-display" style="font-size:clamp(2.25rem,4vw,3.25rem); color:#1a1a2e; margin:0 0 16px;">
+          Стоматолог у<br/>Голосіївському районі
+        </h1>
+        <p id="hero-italic" style="font-size:1.3rem; font-family:'DM Serif Display',serif; font-style:italic; color:#2546e4; margin:0 0 12px; letter-spacing:-0.01em;">
+          Без болю. Без страху. З результатом.
+        </p>
+        <p id="hero-desc" class="body-text" style="font-size:1rem; color:#4a5568; margin:0 0 28px; max-width:440px;">
+          Лікуємо, відновлюємо та повертаємо впевненість у посмішці.<br/>Прийом вже сьогодні.
+        </p>
+        <!-- Bullets -->
+        <ul id="hero-bullets" style="list-style:none; padding:0; margin:0 0 32px; display:flex; flex-direction:column; gap:10px;">
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.9375rem; color:#1a1a2e; font-weight:500;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Безболісне лікування
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.9375rem; color:#1a1a2e; font-weight:500;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Сучасне обладнання
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.9375rem; color:#1a1a2e; font-weight:500;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Працюємо щодня
+          </li>
+        </ul>
+        <!-- Buttons -->
+        <div id="hero-btns" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+          <a href="#booking" class="btn-primary">Записатись на прийом</a>
+          <a href="#prices" class="btn-outline">Дізнатись ціни</a>
+        </div>
+        <p id="hero-microcopy" style="font-size:0.8125rem; color:#9ca3af; margin:20px 0 0;">Займе 1 хвилину</p>
+      </div>
+      <!-- Right: image -->
+      <div id="hero-img" class="img-overlay" style="height:480px;">
+        <img src="images/hero-doctor.png" alt="Стоматолог у сучасному кабінеті" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ STATS -->
+  <section id="stats-section" style="background:#f8f9ff; padding:48px 24px; border-top:1px solid rgba(37,70,228,0.07); border-bottom:1px solid rgba(37,70,228,0.07);">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center;">
+      <div class="stat-block">
+        <div class="heading-display stat-num" id="stat-0" style="font-size:2.5rem; color:#2546e4;">150+</div>
+        <div style="font-size:0.875rem; color:#64748b; margin-top:4px;">задоволених пацієнтів</div>
+      </div>
+      <div class="stat-block">
+        <div class="heading-display stat-num" id="stat-1" style="font-size:2.5rem; color:#2546e4;">+10</div>
+        <div style="font-size:0.875rem; color:#64748b; margin-top:4px;">років досвіду</div>
+      </div>
+      <div class="stat-block">
+        <div class="heading-display stat-num" id="stat-2" style="font-size:2.5rem; color:#2546e4;">500+</div>
+        <div style="font-size:0.875rem; color:#64748b; margin-top:4px;">проведених процедур</div>
+      </div>
+      <div class="stat-block">
+        <div class="heading-display stat-num" id="stat-3" style="font-size:2.5rem; color:#2546e4;">98%</div>
+        <div style="font-size:0.875rem; color:#64748b; margin-top:4px;">рекомендують нас</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ PAIN BLOCK -->
+  <section id="pain" style="padding:96px 24px 80px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.875rem); color:#1a1a2e; margin:0 0 16px;">
+          Знайомо?
+        </h2>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:44px;">
+        <div class="pain-item fade-up">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="body-text" style="font-size:0.9375rem; color:#374151;">Болить зуб, але відкладаєте візит</span>
+        </div>
+        <div class="pain-item fade-up" style="transition-delay:0.07s;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="body-text" style="font-size:0.9375rem; color:#374151;">Страх перед стоматологом</span>
+        </div>
+        <div class="pain-item fade-up" style="transition-delay:0.14s;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="body-text" style="font-size:0.9375rem; color:#374151;">Не розумієте, скільки це буде коштувати</span>
+        </div>
+        <div class="pain-item fade-up" style="transition-delay:0.21s;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="body-text" style="font-size:0.9375rem; color:#374151;">Немає "свого" лікаря поруч</span>
+        </div>
+      </div>
+      <div class="fade-up" style="text-align:center;">
+        <p class="heading-display" style="font-size:1.625rem; color:#2546e4; margin:0;">Ми це закриваємо.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" style="max-width:1200px; margin:0 auto;" />
+
+  <!-- ============================================================ WHY US -->
+  <section id="why-us" style="padding:96px 24px;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+      <div>
+        <span class="section-label">Переваги</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:0 0 44px;">
+          Чому обирають нас
+        </h2>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="benefit-row" style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:40px; height:40px; min-width:40px; border-radius:10px; background:rgba(37,70,228,0.09); display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; font-size:0.9375rem; color:#1a1a2e; margin-bottom:4px;">Лікуємо без болю</div>
+              <div class="body-text" style="font-size:0.875rem; color:#64748b;">Сучасна анестезія гарантує комфорт на кожному етапі</div>
+            </div>
+          </div>
+          <div class="benefit-row" style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:40px; height:40px; min-width:40px; border-radius:10px; background:rgba(37,70,228,0.09); display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; font-size:0.9375rem; color:#1a1a2e; margin-bottom:4px;">Пояснюємо кожен етап</div>
+              <div class="body-text" style="font-size:0.875rem; color:#64748b;">Ніяких сюрпризів — ви завжди знаєте, що відбувається</div>
+            </div>
+          </div>
+          <div class="benefit-row" style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:40px; height:40px; min-width:40px; border-radius:10px; background:rgba(37,70,228,0.09); display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; font-size:0.9375rem; color:#1a1a2e; margin-bottom:4px;">Фіксована ціна</div>
+              <div class="body-text" style="font-size:0.875rem; color:#64748b;">Без "сюрпризів" — вартість обговорюється до початку</div>
+            </div>
+          </div>
+          <div class="benefit-row" style="display:flex; gap:16px; align-items:flex-start;">
+            <div style="width:40px; height:40px; min-width:40px; border-radius:10px; background:rgba(37,70,228,0.09); display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; font-size:0.9375rem; color:#1a1a2e; margin-bottom:4px;">Голосіївський район</div>
+              <div class="body-text" style="font-size:0.875rem; color:#64748b;">Зручне розташування — легко дістатись із будь-якої точки</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:36px;">
+          <a href="#booking" class="btn-primary">Записатись</a>
+        </div>
+      </div>
+      <!-- Right: image -->
+      <div id="why-us-img" class="img-overlay" style="height:480px;">
+        <img src="images/clinic-procedure.png" alt="Сучасний стоматологічний кабінет" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ SERVICES -->
+  <section id="services" style="padding:96px 24px; background:#f8f9ff;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:56px;">
+        <span class="section-label">Що ми робимо</span>
+        <h2 class="heading-display" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 0;">
+          Наші послуги
+        </h2>
+      </div>
+
+      <!-- Row 1: 3 cards -->
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:24px;">
+
+        <!-- Card 1: Лікування карієсу -->
+        <div class="svc-card">
+          <div class="svc-photo">
+            <img src="images/svc-caries.png" alt="Лікування карієсу" />
+            <div class="svc-photo-overlay"></div>
+          </div>
+          <div class="svc-body">
+            <div class="svc-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3c-1.5 0-3 1-3 4 0 2 .5 3.5 1.5 5L9 19c.3 1 1.5 2 3 2s2.7-1 3-2l1.5-7C17.5 10.5 18 9 18 7c0-3-1.5-4-3-4a3 3 0 0 0-3 2 3 3 0 0 0-3-2z"/></svg>
+            </div>
+            <h3 class="svc-title">Лікування карієсу</h3>
+            <p class="svc-desc">Відновлюємо зуб безболісно. Зупиняємо руйнування на ранній стадії — без страху та дискомфорту.</p>
+            <div class="svc-cta">
+              Записатись
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Професійна чистка -->
+        <div class="svc-card">
+          <div class="svc-photo">
+            <img src="images/svc-cleaning.png" alt="Професійна чистка" />
+            <div class="svc-photo-overlay"></div>
+          </div>
+          <div class="svc-body">
+            <div class="svc-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="svc-title">Професійна чистка</h3>
+            <p class="svc-desc">Видаляємо наліт і зубний камінь ультразвуком. Повертаємо природну білизну та свіжість.</p>
+            <div class="svc-cta">
+              Записатись
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Відбілювання -->
+        <div class="svc-card">
+          <div class="svc-photo">
+            <img src="images/svc-whitening.png" alt="Відбілювання" />
+            <div class="svc-photo-overlay"></div>
+          </div>
+          <div class="svc-body">
+            <div class="svc-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <h3 class="svc-title">Відбілювання</h3>
+            <p class="svc-desc">Освітлюємо зуби на кілька тонів за одне відвідування. Безпечна система — без шкоди для емалі.</p>
+            <div class="svc-cta">
+              Записатись
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: 2 cards centred -->
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:792px; margin:0 auto 52px;">
+
+        <!-- Card 4: Імплантація -->
+        <div class="svc-card">
+          <div class="svc-photo">
+            <img src="images/svc-implant.png" alt="Імплантація" />
+            <div class="svc-photo-overlay"></div>
+          </div>
+          <div class="svc-body">
+            <div class="svc-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><path d="M8 6h8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/></svg>
+            </div>
+            <h3 class="svc-title">Імплантація</h3>
+            <p class="svc-desc">Встановлюємо титановий імплант, який служить як природний зуб. Довічна гарантія на конструкцію.</p>
+            <div class="svc-cta">
+              Записатись
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Протезування -->
+        <div class="svc-card">
+          <div class="svc-photo">
+            <img src="images/svc-prosthetics.png" alt="Протезування" />
+            <div class="svc-photo-overlay"></div>
+          </div>
+          <div class="svc-body">
+            <div class="svc-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3 class="svc-title">Протезування</h3>
+            <p class="svc-desc">Відновлюємо функцію та естетику за допомогою коронок, мостів і знімних протезів преміум-класу.</p>
+            <div class="svc-cta">
+              Записатись
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="#booking" class="btn-primary">Обрати послугу</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ RESULTS (before/after + reviews) -->
+  <section id="results" style="padding:96px 24px;">
+    <div style="max-width:1200px; margin:0 auto;">
+
+      <!-- Header -->
+      <div style="text-align:center; margin-bottom:64px;">
+        <span class="section-label">Відгуки пацієнтів</span>
+        <h2 class="heading-display" style="font-size:clamp(2rem,3.5vw,2.875rem); color:#1a1a2e; margin:12px 0 12px;">
+          Результати наших пацієнтів
+        </h2>
+        <p style="font-size:1rem; color:#64748b; max-width:480px; margin:0 auto;">Посуньте повзунок, щоб побачити різницю до і після лікування</p>
+      </div>
+
+      <!-- Cards grid: 3 × 2 -->
+      <div class="results-grid">
+
+        <!-- ── Card 1 ── -->
+        <div class="rc-card">
+          <div class="bas-wrap">
+            <div class="bas-before"><img src="images/smile-before.png" alt="До" /></div>
+            <div class="bas-after" ><img src="images/smile-after.png"  alt="Після" /></div>
+            <div class="bas-line"></div>
+            <div class="bas-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round"><path d="M18 8l-6-6-6 6"/><path d="M6 16l6 6 6-6"/></svg>
+            </div>
+            <span class="bas-badge bas-badge--before">До</span>
+            <span class="bas-badge bas-badge--after">Після</span>
+            <input type="range" class="bas-range" min="0" max="100" value="50" aria-label="Повзунок до/після" />
+          </div>
+          <div class="rc-body">
+            <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rc-text">Відбілювання перевершило всі очікування. Зуби стали на кілька тонів світлішими вже після першого сеансу!</p>
+            <div class="rc-author">
+              <img src="https://placehold.co/40x40/e8eeff/2546e4?text=О" alt="Олена К." class="rc-avatar" />
+              <span class="rc-name">Олена К.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 2 ── -->
+        <div class="rc-card">
+          <div class="bas-wrap">
+            <div class="bas-before"><img src="images/ba-before-2.png" alt="До" /></div>
+            <div class="bas-after" ><img src="images/ba-after-2.png"  alt="Після" /></div>
+            <div class="bas-line"></div>
+            <div class="bas-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round"><path d="M18 8l-6-6-6 6"/><path d="M6 16l6 6 6-6"/></svg>
+            </div>
+            <span class="bas-badge bas-badge--before">До</span>
+            <span class="bas-badge bas-badge--after">Після</span>
+            <input type="range" class="bas-range" min="0" max="100" value="50" aria-label="Повзунок до/після" />
+          </div>
+          <div class="rc-body">
+            <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rc-text">Чистка зубів була абсолютно безболісною. Відчуваю свіжість і чистоту, яку не відчував роками!</p>
+            <div class="rc-author">
+              <img src="https://placehold.co/40x40/e8eeff/2546e4?text=А" alt="Андрій М." class="rc-avatar" />
+              <span class="rc-name">Андрій М.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 3 ── -->
+        <div class="rc-card">
+          <div class="bas-wrap">
+            <div class="bas-before"><img src="images/ba-before-3.png" alt="До" /></div>
+            <div class="bas-after" ><img src="images/ba-after-3.png"  alt="Після" /></div>
+            <div class="bas-line"></div>
+            <div class="bas-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round"><path d="M18 8l-6-6-6 6"/><path d="M6 16l6 6 6-6"/></svg>
+            </div>
+            <span class="bas-badge bas-badge--before">До</span>
+            <span class="bas-badge bas-badge--after">Після</span>
+            <input type="range" class="bas-range" min="0" max="100" value="50" aria-label="Повзунок до/після" />
+          </div>
+          <div class="rc-body">
+            <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rc-text">Вирівнювання зубів — неймовірний результат. Лікар пояснив кожен крок, і тепер я посміхаюся з впевненістю.</p>
+            <div class="rc-author">
+              <img src="https://placehold.co/40x40/e8eeff/2546e4?text=М" alt="Марія В." class="rc-avatar" />
+              <span class="rc-name">Марія В.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 4 ── -->
+        <div class="rc-card">
+          <div class="bas-wrap">
+            <div class="bas-before"><img src="images/ba-before-4.png" alt="До" /></div>
+            <div class="bas-after" ><img src="images/ba-after-4.png"  alt="Після" /></div>
+            <div class="bas-line"></div>
+            <div class="bas-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round"><path d="M18 8l-6-6-6 6"/><path d="M6 16l6 6 6-6"/></svg>
+            </div>
+            <span class="bas-badge bas-badge--before">До</span>
+            <span class="bas-badge bas-badge--after">Після</span>
+            <input type="range" class="bas-range" min="0" max="100" value="50" aria-label="Повзунок до/після" />
+          </div>
+          <div class="rc-body">
+            <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rc-text">Лікування карієсу пройшло швидко і комфортно. Жодного болю — лікар пояснив усе до початку процедури.</p>
+            <div class="rc-author">
+              <img src="https://placehold.co/40x40/e8eeff/2546e4?text=Т" alt="Тетяна О." class="rc-avatar" />
+              <span class="rc-name">Тетяна О.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 5 ── -->
+        <div class="rc-card">
+          <div class="bas-wrap">
+            <div class="bas-before"><img src="images/ba-before-5.png" alt="До" /></div>
+            <div class="bas-after" ><img src="images/ba-after-5.png"  alt="Після" /></div>
+            <div class="bas-line"></div>
+            <div class="bas-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round"><path d="M18 8l-6-6-6 6"/><path d="M6 16l6 6 6-6"/></svg>
+            </div>
+            <span class="bas-badge bas-badge--before">До</span>
+            <span class="bas-badge bas-badge--after">Після</span>
+            <input type="range" class="bas-range" min="0" max="100" value="50" aria-label="Повзунок до/після" />
+          </div>
+          <div class="rc-body">
+            <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rc-text">Реставрація сколотих зубів — результат вражає! Виглядає абсолютно природно. Дякую за бездоганну роботу.</p>
+            <div class="rc-author">
+              <img src="https://placehold.co/40x40/e8eeff/2546e4?text=О" alt="Олексій П." class="rc-avatar" />
+              <span class="rc-name">Олексій П.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 6 ── -->
+        <div class="rc-card">
+          <div class="bas-wrap">
+            <div class="bas-before"><img src="images/ba-before-6.png" alt="До" /></div>
+            <div class="bas-after" ><img src="images/ba-after-6.png"  alt="Після" /></div>
+            <div class="bas-line"></div>
+            <div class="bas-knob">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.5" stroke-linecap="round"><path d="M18 8l-6-6-6 6"/><path d="M6 16l6 6 6-6"/></svg>
+            </div>
+            <span class="bas-badge bas-badge--before">До</span>
+            <span class="bas-badge bas-badge--after">Після</span>
+            <input type="range" class="bas-range" min="0" max="100" value="50" aria-label="Повзунок до/після" />
+          </div>
+          <div class="rc-body">
+            <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rc-text">Пластика усмішки змінила все! Команда клініки — справжні професіонали. Тепер посміхаюся при кожній зустрічі.</p>
+            <div class="rc-author">
+              <img src="https://placehold.co/40x40/e8eeff/2546e4?text=І" alt="Ірина С." class="rc-avatar" />
+              <span class="rc-name">Ірина С.</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /results-grid -->
+
+      <div style="text-align:center; margin-top:56px;">
+        <a href="#booking" class="btn-primary">Хочу так само</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ PROCESS -->
+  <section id="process" style="padding:96px 24px; background:#f8f9ff;">
+    <div style="max-width:720px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:56px;">
+        <span class="section-label">Як це працює</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 0;">
+          Як проходить прийом
+        </h2>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <!-- Step 1 -->
+        <div class="process-step" style="display:flex; gap:24px; padding-bottom:36px; position:relative;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="step-circle">1</div>
+            <div style="width:2px; flex:1; background:linear-gradient(to bottom, rgba(37,70,228,0.3), rgba(37,70,228,0.05)); margin-top:8px;"></div>
+          </div>
+          <div style="padding-top:8px; padding-bottom:8px;">
+            <div style="font-weight:600; font-size:1rem; color:#1a1a2e; margin-bottom:6px;">Запис або заявка</div>
+            <div class="body-text" style="font-size:0.9rem; color:#64748b;">Зателефонуйте або залиште заявку онлайн — передзвонимо впродовж 5 хвилин</div>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="process-step" style="display:flex; gap:24px; padding-bottom:36px; position:relative;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="step-circle">2</div>
+            <div style="width:2px; flex:1; background:linear-gradient(to bottom, rgba(37,70,228,0.3), rgba(37,70,228,0.05)); margin-top:8px;"></div>
+          </div>
+          <div style="padding-top:8px;">
+            <div style="font-weight:600; font-size:1rem; color:#1a1a2e; margin-bottom:6px;">Консультація + діагностика</div>
+            <div class="body-text" style="font-size:0.9rem; color:#64748b;">Лікар детально оглядає та пояснює стан зубів, виявляє проблеми</div>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="process-step" style="display:flex; gap:24px; padding-bottom:36px;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="step-circle">3</div>
+            <div style="width:2px; flex:1; background:linear-gradient(to bottom, rgba(37,70,228,0.3), rgba(37,70,228,0.05)); margin-top:8px;"></div>
+          </div>
+          <div style="padding-top:8px;">
+            <div style="font-weight:600; font-size:1rem; color:#1a1a2e; margin-bottom:6px;">Узгодження плану лікування</div>
+            <div class="body-text" style="font-size:0.9rem; color:#64748b;">Обговорюємо план та ціну — ніяких прихованих витрат</div>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="process-step" style="display:flex; gap:24px;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="step-circle">4</div>
+          </div>
+          <div style="padding-top:8px;">
+            <div style="font-weight:600; font-size:1rem; color:#1a1a2e; margin-bottom:6px;">Лікування</div>
+            <div class="body-text" style="font-size:0.9rem; color:#64748b;">Комфортно, безболісно, з сучасним обладнанням</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:48px;">
+        <a href="#booking" class="btn-primary">Записатись зараз</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ DOCTOR -->
+  <section id="doctor" style="padding:96px 24px;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+      <div id="doctor-img" class="img-overlay" style="height:520px;">
+        <img src="images/doctor-portrait.png" alt="Ваш лікар" />
+      </div>
+      <div>
+        <span class="section-label">Команда</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 24px;">
+          Ваш лікар
+        </h2>
+        <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:32px;">
+          <div class="card fade-up" style="padding:20px 24px; display:flex; gap:16px; align-items:center; transition-delay:0.08s;">
+            <div style="font-family:'DM Serif Display',serif; font-size:2rem; color:#2546e4; line-height:1;">X+</div>
+            <div>
+              <div style="font-weight:600; color:#1a1a2e; font-size:0.9375rem;">Досвід понад X років</div>
+              <div style="font-size:0.875rem; color:#64748b;">Стоматологічна практика</div>
+            </div>
+          </div>
+          <div class="card fade-up" style="padding:20px 24px; display:flex; gap:16px; align-items:center; transition-delay:0.16s;">
+            <div style="font-family:'DM Serif Display',serif; font-size:2rem; color:#2546e4; line-height:1;">100+</div>
+            <div>
+              <div style="font-weight:600; color:#1a1a2e; font-size:0.9375rem;">Сотні задоволених пацієнтів</div>
+              <div style="font-size:0.875rem; color:#64748b;">Позитивні відгуки та рекомендації</div>
+            </div>
+          </div>
+          <div class="card fade-up" style="padding:20px 24px; display:flex; gap:16px; align-items:center; transition-delay:0.24s;">
+            <div style="width:40px; height:40px; border-radius:10px; background:rgba(37,70,228,0.09); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600; color:#1a1a2e; font-size:0.9375rem;">Постійне навчання та практика</div>
+              <div style="font-size:0.875rem; color:#64748b;">Регулярне підвищення кваліфікації</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ PRICES -->
+  <section id="prices" style="padding:96px 24px;">
+    <div style="max-width:900px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:56px;">
+        <span class="section-label">Вартість</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 0;">
+          Прозорі ціни
+        </h2>
+      </div>
+      <div style="background:#fff; border-radius:20px; border:1px solid rgba(37,70,228,0.1); box-shadow:0 4px 20px rgba(37,70,228,0.07); overflow:hidden; margin-bottom:40px;">
+        <div class="price-row" style="padding:28px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(37,70,228,0.07);">
+          <div style="font-weight:600; font-size:1rem; color:#1a1a2e;">Консультація</div>
+          <div style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
+        </div>
+        <div class="price-row" style="padding:28px 32px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(37,70,228,0.07); background:rgba(37,70,228,0.02);">
+          <div style="font-weight:600; font-size:1rem; color:#1a1a2e;">Чистка</div>
+          <div style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
+        </div>
+        <div class="price-row" style="padding:28px 32px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-weight:600; font-size:1rem; color:#1a1a2e;">Лікування карієсу</div>
+          <div style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#2546e4;">від … грн</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <a href="#booking" class="btn-primary">Дізнатись точну вартість</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CTA BANNER -->
+  <section id="cta-section" class="cta-bg grain" style="position:relative; overflow:hidden; padding:96px 24px;">
+    <div style="position:relative; z-index:2; max-width:720px; margin:0 auto; text-align:center;">
+      <h2 class="heading-display fade-up" style="font-size:clamp(2rem,4vw,3rem); color:#fff; margin:0 0 16px;">
+        Запишіться та отримайте безкоштовну консультацію
+      </h2>
+      <p class="body-text fade-up" style="font-size:1.0625rem; color:rgba(255,255,255,0.8); margin:0 0 36px; transition-delay:0.1s;">
+        Не відкладайте турботу про здоров'я зубів. Прийом вже сьогодні.
+      </p>
+      <a href="#booking" class="btn-white fade-up" style="transition-delay:0.2s;">Записатись зараз</a>
+    </div>
+  </section>
+
+  <!-- ============================================================ LOCATION -->
+  <section id="location" style="padding:96px 24px;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div>
+        <span class="section-label">Де ми знаходимось</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 24px;">
+          Ми поруч
+        </h2>
+        <p class="body-text fade-up" style="font-size:1rem; color:#4a5568; margin:0 0 28px;">
+          Голосіївський район, зручний доїзд<br/>
+          Поруч зупинки громадського транспорту. Є паркінг.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Голосіївський район, Київ
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Пн–Нд: 9:00 — 20:00
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +38 (000) 000-00-00
+          </div>
+        </div>
+      </div>
+      <!-- Map placeholder -->
+      <div class="fade-up" style="border-radius:16px; overflow:hidden; height:360px; background:#e8edf5; border:1px solid rgba(37,70,228,0.1); box-shadow:0 4px 20px rgba(37,70,228,0.08); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:#64748b;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2546e4" stroke-width="1.5" stroke-linecap="round" opacity="0.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span style="font-size:0.875rem; color:#94a3b8;">Голосіївський район, Київ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ BOOKING FORM -->
+  <section id="booking" style="padding:96px 24px; background:#f8f9ff;">
+    <div style="max-width:560px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <span class="section-label">Запис</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 0;">
+          Запишіться на прийом
+        </h2>
+      </div>
+      <div class="fade-up" style="background:#fff; border-radius:20px; padding:40px 40px 32px; border:1px solid rgba(37,70,228,0.1); box-shadow:0 4px 20px rgba(37,70,228,0.07);">
+        <form onsubmit="handleForm(event)" style="display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <label style="display:block; font-weight:600; font-size:0.875rem; color:#374151; margin-bottom:8px;">Ім'я</label>
+            <input type="text" class="form-input" placeholder="Ваше ім'я" required />
+          </div>
+          <div>
+            <label style="display:block; font-weight:600; font-size:0.875rem; color:#374151; margin-bottom:8px;">Телефон</label>
+            <input type="tel" class="form-input" placeholder="+38 (0__) ___-__-__" required />
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:1rem; box-shadow:0 2px 8px rgba(37,70,228,0.3);">Записатись</button>
+        </form>
+        <p style="text-align:center; font-size:0.8125rem; color:#9ca3af; margin:28px 0 0;">Передзвонимо протягом 5 хвилин</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FAQ -->
+  <section id="faq" style="padding:96px 24px;">
+    <div style="max-width:720px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:56px;">
+        <span class="section-label">Питання</span>
+        <h2 class="heading-display fade-up" style="font-size:clamp(2rem,3.5vw,2.75rem); color:#1a1a2e; margin:12px 0 0;">
+          Часті питання
+        </h2>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <details class="fade-up" style="background:#fff; border-radius:12px; border:1px solid rgba(37,70,228,0.1); overflow:hidden;">
+          <summary>Чи боляче лікувати зуби? <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-answer">Ні. Ми використовуємо сучасну анестезію, яка повністю усуває біль. Ви лише відчуєте легкий укол, і все — далі комфортно.</div>
+        </details>
+        <details class="fade-up" style="background:#fff; border-radius:12px; border:1px solid rgba(37,70,228,0.1); overflow:hidden; transition-delay:0.06s;">
+          <summary>Скільки часу займає лікування? <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-answer">Залежить від складності. Лікування карієсу — зазвичай 30–60 хвилин. Імплантація або протезування — кілька візитів.</div>
+        </details>
+        <details class="fade-up" style="background:#fff; border-radius:12px; border:1px solid rgba(37,70,228,0.1); overflow:hidden; transition-delay:0.12s;">
+          <summary>Як дізнатись точну вартість? <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-answer">Точна ціна визначається після огляду. Ми завжди узгоджуємо план і вартість до початку лікування — жодних прихованих платежів.</div>
+        </details>
+        <details class="fade-up" style="background:#fff; border-radius:12px; border:1px solid rgba(37,70,228,0.1); overflow:hidden; transition-delay:0.18s;">
+          <summary>Чи приймаєте ви у вихідні? <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-answer">Так, ми працюємо щодня з 9:00 до 20:00, включаючи суботу та неділю.</div>
+        </details>
+        <details class="fade-up" style="background:#fff; border-radius:12px; border:1px solid rgba(37,70,228,0.1); overflow:hidden; transition-delay:0.24s;">
+          <summary>Як записатись на прийом? <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-answer">Зателефонуйте нам або залиште заявку на сайті. Ми передзвонимо впродовж 5 хвилин і підберемо зручний час.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FOOTER -->
+  <footer style="background:#1a1a2e; padding:64px 24px 32px;">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px;">
+        <!-- Brand -->
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+            <div style="width:36px; height:36px; border-radius:10px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3c-1.5 0-3 1-3 4 0 2 .5 3.5 1.5 5L9 19c.3 1 1.5 2 3 2s2.7-1 3-2l1.5-7C17.5 10.5 18 9 18 7c0-3-1.5-4-3-4a3 3 0 0 0-3 2 3 3 0 0 0-3-2z"/></svg>
+            </div>
+            <span style="font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff;">DentoCare</span>
+          </div>
+          <p style="font-size:0.875rem; color:rgba(255,255,255,0.55); line-height:1.7; max-width:260px; margin:0 0 20px;">
+            Стоматологія у Голосіївському районі. Без болю, без страху, з результатом.
+          </p>
+          <div style="display:flex; gap:10px;">
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Telegram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Services -->
+        <div>
+          <div style="font-weight:600; font-size:0.875rem; color:#fff; margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">Послуги</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="#services" class="footer-link">Лікування карієсу</a>
+            <a href="#services" class="footer-link">Професійна чистка</a>
+            <a href="#services" class="footer-link">Відбілювання</a>
+            <a href="#services" class="footer-link">Імплантація</a>
+            <a href="#services" class="footer-link">Протезування</a>
+          </div>
+        </div>
+        <!-- Schedule -->
+        <div>
+          <div style="font-weight:600; font-size:0.875rem; color:#fff; margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">Графік роботи</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.875rem; color:rgba(255,255,255,0.55);">Понеділок – П'ятниця</div>
+            <div style="font-size:0.9375rem; color:rgba(255,255,255,0.85); font-weight:500;">9:00 – 20:00</div>
+            <div style="font-size:0.875rem; color:rgba(255,255,255,0.55); margin-top:4px;">Субота – Неділя</div>
+            <div style="font-size:0.9375rem; color:rgba(255,255,255,0.85); font-weight:500;">10:00 – 18:00</div>
+          </div>
+        </div>
+        <!-- Contacts -->
+        <div>
+          <div style="font-weight:600; font-size:0.875rem; color:#fff; margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">Контакти</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:0.875rem; color:rgba(255,255,255,0.65);">Голосіївський район, Київ</div>
+            <a href="tel:+380000000000" class="footer-link">+38 (000) 000-00-00</a>
+            <a href="mailto:info@dentocare.ua" class="footer-link">info@dentocare.ua</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; display:flex; justify-content:space-between; align-items:center;">
+        <p style="font-size:0.8125rem; color:rgba(255,255,255,0.35); margin:0;">© 2024 DentoCare. Всі права захищено.</p>
+        <p style="font-size:0.8125rem; color:rgba(255,255,255,0.35); margin:0;">Голосіївський район, Київ</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Neutralise the CSS fade-up class so GSAP owns all states
+    document.querySelectorAll('.fade-up').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // NAV — slide down on load
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('header', {
+      y: -64, opacity: 0, duration: 0.6, ease: 'power3.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // HERO — staggered entrance timeline
+    // ─────────────────────────────────────────────────────────────
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.2 });
+    heroTl
+      .from('#hero-label',     { opacity: 0, y: 14,  duration: 0.45 })
+      .from('#hero-h1',        { opacity: 0, y: 52,  duration: 0.75, ease: 'power4.out' }, '-=0.15')
+      .from('#hero-italic',    { opacity: 0, y: 24,  duration: 0.55 }, '-=0.5')
+      .from('#hero-desc',      { opacity: 0, y: 20,  duration: 0.5  }, '-=0.38')
+      .from('#hero-bullets li',{ opacity: 0, x: -30, duration: 0.42, stagger: 0.11 }, '-=0.32')
+      .from('#hero-btns > *, #hero-microcopy', { opacity: 0, y: 20, duration: 0.45, stagger: 0.1 }, '-=0.25')
+      .from('#hero-img',       { opacity: 0, x: 64, scale: 0.93, duration: 0.9, ease: 'power3.out' }, 0.3);
+
+    // ─────────────────────────────────────────────────────────────
+    // STATS — scale-up cards + count-up numbers
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('.stat-block', {
+      scrollTrigger: { trigger: '#stats-section', start: 'top 88%', once: true },
+      opacity: 0, y: 44, scale: 0.82,
+      duration: 0.65, stagger: 0.13,
+      ease: 'back.out(1.7)'
+    });
+
+    const countDefs = [
+      { id: 'stat-0', end: 150, suffix: '+',  prefix: ''  },
+      { id: 'stat-1', end: 10,  suffix: '',   prefix: '+' },
+      { id: 'stat-2', end: 500, suffix: '+',  prefix: ''  },
+      { id: 'stat-3', end: 98,  suffix: '%',  prefix: ''  },
+    ];
+    countDefs.forEach(({ id, end, suffix, prefix }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      ScrollTrigger.create({
+        trigger: el, start: 'top 88%', once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: end, duration: 1.8, ease: 'power2.out',
+            onUpdate() { el.textContent = prefix + Math.round(this.targets()[0].val) + suffix; }
+          });
+        }
+      });
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // PAIN BLOCK — heading + alternating slide-in
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#pain h2', {
+      scrollTrigger: { trigger: '#pain', start: 'top 85%', once: true },
+      opacity: 0, y: 36, duration: 0.65, ease: 'power3.out'
+    });
+    gsap.from('#pain .pain-item:nth-child(odd)', {
+      scrollTrigger: { trigger: '#pain', start: 'top 82%', once: true },
+      opacity: 0, x: -52, duration: 0.62, stagger: 0.14, ease: 'power2.out'
+    });
+    gsap.from('#pain .pain-item:nth-child(even)', {
+      scrollTrigger: { trigger: '#pain', start: 'top 82%', once: true },
+      opacity: 0, x: 52, duration: 0.62, stagger: 0.14, ease: 'power2.out'
+    });
+    gsap.from('#pain p.heading-display', {
+      scrollTrigger: { trigger: '#pain', start: 'top 75%', once: true },
+      opacity: 0, scale: 0.88, duration: 0.55, ease: 'back.out(1.5)'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // WHY CHOOSE US — text left, image right
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#why-us .section-label', {
+      scrollTrigger: { trigger: '#why-us', start: 'top 88%', once: true },
+      opacity: 0, y: 16, duration: 0.45, ease: 'power2.out'
+    });
+    gsap.from('#why-us h2', {
+      scrollTrigger: { trigger: '#why-us', start: 'top 86%', once: true },
+      opacity: 0, y: 32, duration: 0.65, ease: 'power3.out'
+    });
+    gsap.from('.benefit-row', {
+      scrollTrigger: { trigger: '#why-us', start: 'top 84%', once: true },
+      opacity: 0, x: -44, duration: 0.58, stagger: 0.13, ease: 'power2.out'
+    });
+    gsap.from('#why-us-img', {
+      scrollTrigger: { trigger: '#why-us', start: 'top 86%', once: true },
+      opacity: 0, x: 64, scale: 0.93, duration: 0.85, ease: 'power3.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // SERVICES — scale-up stagger (dashboard-style)
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#services .section-label, #services h2', {
+      scrollTrigger: { trigger: '#services', start: 'top 88%', once: true },
+      opacity: 0, y: 28, duration: 0.55, stagger: 0.12, ease: 'power2.out'
+    });
+    gsap.from('.svc-card', {
+      scrollTrigger: { trigger: '#services .svc-card', start: 'top 92%', once: true },
+      opacity: 0, scale: 0.88, y: 32,
+      duration: 0.6, stagger: 0.1,
+      ease: 'back.out(1.8)'
+    });
+    gsap.from('#services .btn-primary', {
+      scrollTrigger: { trigger: '#services .btn-primary', start: 'top 95%', once: true },
+      opacity: 0, y: 20, duration: 0.45, ease: 'power2.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // RESULTS — before/after + review cards
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#results .section-label, #results h2, #results p', {
+      scrollTrigger: { trigger: '#results', start: 'top 88%', once: true },
+      opacity: 0, y: 28, duration: 0.55, stagger: 0.1, ease: 'power2.out'
+    });
+    gsap.from('.rc-card', {
+      scrollTrigger: { trigger: '.results-grid', start: 'top 92%', once: true },
+      opacity: 0, y: 44, scale: 0.94,
+      duration: 0.62, stagger: 0.1,
+      ease: 'power3.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // PROCESS — sequential reveal, circles pop in
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#process .section-label, #process h2', {
+      scrollTrigger: { trigger: '#process', start: 'top 88%', once: true },
+      opacity: 0, y: 28, duration: 0.6, stagger: 0.1, ease: 'power3.out'
+    });
+    gsap.from('.process-step', {
+      scrollTrigger: { trigger: '#process', start: 'top 85%', once: true },
+      opacity: 0, x: -40, duration: 0.58, stagger: 0.2, ease: 'power2.out'
+    });
+    gsap.from('.step-circle', {
+      scrollTrigger: { trigger: '#process', start: 'top 85%', once: true },
+      scale: 0, duration: 0.42, stagger: 0.2,
+      ease: 'back.out(2.2)', delay: 0.1
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // DOCTOR — image from left, stat cards from right
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#doctor .section-label, #doctor h2', {
+      scrollTrigger: { trigger: '#doctor', start: 'top 88%', once: true },
+      opacity: 0, y: 24, duration: 0.55, stagger: 0.1, ease: 'power2.out'
+    });
+    gsap.from('#doctor-img', {
+      scrollTrigger: { trigger: '#doctor', start: 'top 86%', once: true },
+      opacity: 0, x: -60, duration: 0.78, ease: 'power3.out'
+    });
+    gsap.from('#doctor .card', {
+      scrollTrigger: { trigger: '#doctor', start: 'top 84%', once: true },
+      opacity: 0, x: 52, duration: 0.55, stagger: 0.15, ease: 'power2.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // Before/After slider — init all .bas-wrap instances
+    // ─────────────────────────────────────────────────────────────
+    document.querySelectorAll('.bas-wrap').forEach(wrap => {
+      const range  = wrap.querySelector('.bas-range');
+      const after  = wrap.querySelector('.bas-after');
+      const line   = wrap.querySelector('.bas-line');
+      const knob   = wrap.querySelector('.bas-knob');
+
+      function update(v) {
+        const pct = v + '%';
+        after.style.clipPath = `inset(0 0 0 ${pct})`;
+        line.style.left  = pct;
+        knob.style.left  = pct;
+      }
+
+      range.addEventListener('input', () => update(range.value));
+      // Animate in from 0→50 on first scroll-into-view for a reveal effect
+      ScrollTrigger.create({
+        trigger: wrap, start: 'top 88%', once: true,
+        onEnter: () => {
+          let val = 0;
+          update(0);
+          gsap.to({ v: 0 }, {
+            v: 50, duration: 1.1, ease: 'power2.inOut',
+            onUpdate() { update(Math.round(this.targets()[0].v)); range.value = Math.round(this.targets()[0].v); }
+          });
+        }
+      });
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // PRICES — rows slide from right
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#prices .section-label, #prices h2', {
+      scrollTrigger: { trigger: '#prices', start: 'top 88%', once: true },
+      opacity: 0, y: 24, duration: 0.55, stagger: 0.1, ease: 'power2.out'
+    });
+    gsap.from('.price-row', {
+      scrollTrigger: { trigger: '#prices', start: 'top 85%', once: true },
+      opacity: 0, x: 48, duration: 0.52, stagger: 0.13, ease: 'power2.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // CTA BANNER — text reveal + parallax
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#cta-section h2', {
+      scrollTrigger: { trigger: '#cta-section', start: 'top 88%', once: true },
+      opacity: 0, y: 44, duration: 0.72, ease: 'power3.out'
+    });
+    gsap.from('#cta-section p, #cta-section a.btn-white', {
+      scrollTrigger: { trigger: '#cta-section', start: 'top 86%', once: true },
+      opacity: 0, y: 28, duration: 0.55, stagger: 0.13, ease: 'power2.out'
+    });
+    // Subtle parallax on the inner content block
+    gsap.to('#cta-section > div[style*="z-index:2"]', {
+      scrollTrigger: {
+        trigger: '#cta-section', start: 'top bottom', end: 'bottom top', scrub: 1.4
+      },
+      y: -36
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // LOCATION — split entrance
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#location > div > div:first-child', {
+      scrollTrigger: { trigger: '#location', start: 'top 88%', once: true },
+      opacity: 0, x: -44, duration: 0.68, ease: 'power3.out'
+    });
+    gsap.from('#location > div > div:last-child', {
+      scrollTrigger: { trigger: '#location', start: 'top 88%', once: true },
+      opacity: 0, x: 44, scale: 0.96, duration: 0.68, ease: 'power3.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // BOOKING FORM — staggered fields
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#booking .section-label, #booking h2', {
+      scrollTrigger: { trigger: '#booking', start: 'top 88%', once: true },
+      opacity: 0, y: 28, duration: 0.6, stagger: 0.1, ease: 'power3.out'
+    });
+    gsap.from('#booking form div, #booking form button', {
+      scrollTrigger: { trigger: '#booking form', start: 'top 92%', once: true },
+      opacity: 0, y: 28, duration: 0.5, stagger: 0.11, ease: 'power2.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // FAQ — cascade from below
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('#faq .section-label, #faq h2', {
+      scrollTrigger: { trigger: '#faq', start: 'top 88%', once: true },
+      opacity: 0, y: 24, duration: 0.55, stagger: 0.1, ease: 'power2.out'
+    });
+    gsap.from('#faq details', {
+      scrollTrigger: { trigger: '#faq', start: 'top 85%', once: true },
+      opacity: 0, y: 32, duration: 0.47, stagger: 0.09, ease: 'power2.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // FOOTER — fade in columns
+    // ─────────────────────────────────────────────────────────────
+    gsap.from('footer > div > div:first-child > *', {
+      scrollTrigger: { trigger: 'footer', start: 'top 95%', once: true },
+      opacity: 0, y: 28, duration: 0.5, stagger: 0.1, ease: 'power2.out'
+    });
+
+    // ─────────────────────────────────────────────────────────────
+    // FORM submit handler
+    // ─────────────────────────────────────────────────────────────
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = 'Дякуємо! Передзвонимо вам';
+      btn.style.background = '#16a34a';
+      btn.style.boxShadow = '0 4px 14px rgba(22,163,74,0.35)';
+      btn.disabled = true;
+      gsap.from(btn, { scale: 0.94, duration: 0.35, ease: 'back.out(2)' });
+    }
+  </script>
+</body>
+</html>

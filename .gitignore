@@ -1,0 +1,7 @@
+node_modules/
+temporary screenshots/
+*.png
+!images/*.png
+Новый документ.txt
+MEMORY.md
+CLAUDE.md
