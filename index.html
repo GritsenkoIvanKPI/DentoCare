@@ -614,8 +614,13 @@
       /* Booking card */
       #booking .fade-up { padding: 28px 20px 24px !important; }
 
-      /* CTA button */
-      #cta-section .btn-white { min-width: 200px !important; }
+      /* All buttons full-width on mobile */
+      .btn-primary, .btn-outline, .btn-white {
+        width: 100% !important;
+        display: flex !important;
+        text-align: center !important;
+        justify-content: center !important;
+      }
 
       /* Service cards — always show photo on mobile */
       .svc-photo { opacity: 1 !important; transform: scale(1) !important; }
