@@ -36,8 +36,8 @@
   </script>
   <style>
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a2e; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a2e; overflow-x: hidden; }
 
     /* Grain texture overlay */
     .grain::after {
@@ -550,6 +550,18 @@
 
     /* ─── MOBILE ─────────────────────────────────────────────────── */
     @media (max-width: 768px) {
+      /* Prevent any element from causing horizontal scroll */
+      * { max-width: 100%; box-sizing: border-box; }
+      img, video, iframe, svg { max-width: 100% !important; }
+
+      /* Headings: wrap long Ukrainian words gracefully */
+      .heading-display { overflow-wrap: break-word; word-break: break-word; hyphens: auto; }
+
+      /* Hero h1 smaller on mobile */
+      #hero-h1      { font-size: clamp(1.75rem, 6.5vw, 2.125rem) !important; }
+      #hero-italic  { font-size: 1.125rem !important; }
+      #hero-desc    { max-width: 100% !important; font-size: 0.9375rem !important; }
+
       #nav-links  { display: none !important; }
       #nav-cta    { display: none !important; }
       #hamburger  { display: flex !important; }
@@ -712,13 +724,13 @@
       <div>
         <span id="hero-label" class="section-label">Голосіївський район, Київ</span>
         <h1 id="hero-h1" class="heading-display" style="font-size:clamp(2.25rem,4vw,3.25rem); color:#1a1a2e; margin:0 0 16px;">
-          Стоматолог у<br/>Голосіївському районі
+          Стоматолог у Голосіївському районі
         </h1>
         <p id="hero-italic" style="font-size:1.3rem; font-family:'DM Serif Display',serif; font-style:italic; color:#2546e4; margin:0 0 12px; letter-spacing:-0.01em;">
           Без болю. Без страху. З результатом.
         </p>
         <p id="hero-desc" class="body-text" style="font-size:1rem; color:#4a5568; margin:0 0 28px; max-width:440px;">
-          Лікуємо, відновлюємо та повертаємо впевненість у посмішці.<br/>Прийом вже сьогодні.
+          Лікуємо, відновлюємо та повертаємо впевненість у посмішці. Прийом вже сьогодні.
         </p>
         <!-- Bullets -->
         <ul id="hero-bullets" style="list-style:none; padding:0; margin:0 0 32px; display:flex; flex-direction:column; gap:10px;">
@@ -1294,8 +1306,7 @@
           Ми поруч
         </h2>
         <p class="body-text fade-up" style="font-size:1rem; color:#4a5568; margin:0 0 28px;">
-          Голосіївський район, зручний доїзд<br/>
-          Поруч зупинки громадського транспорту. Є паркінг.
+          Голосіївський район, зручний доїзд. Поруч зупинки громадського транспорту. Є паркінг.
         </p>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div style="display:flex; align-items:center; gap:12px; font-size:0.9375rem; color:#374151;">
